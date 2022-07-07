@@ -9,6 +9,8 @@ import {
 import GlobalFilter from "../GlobalFilter";
 import { useOmc23 } from "../../context/omc23/ContextOmc23";
 import "../../styles/omc23/styles.css";
+
+
 export default function Omcn1(props) {
   const dataOmc1 = props.Omcn1;
   const { NivelForm } = useOmc23();
@@ -22,7 +24,7 @@ export default function Omcn1(props) {
   }
 
   const selectRow = (e) => {
-    const selectRowTag = e.nativeEvent.path[1];
+    const selectRowTag = e.currentTarget;
     if (selectRowTag.classList.contains("row-selected")) {
     } else {
       cleanTr();

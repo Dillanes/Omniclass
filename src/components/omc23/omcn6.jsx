@@ -15,7 +15,7 @@ export default function Omcn6(props){
     
   const selectRow = (e)=>{
 
-      const selectRowTag = e.nativeEvent.path[1]
+      const selectRowTag = e.currentTarget
       if(selectRowTag.classList.contains('row-selected')){
         
       }else{

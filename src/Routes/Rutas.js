@@ -8,7 +8,7 @@ import { TableContainer } from "../components/Materiales/TableContainer";
 import { Loading } from "../components/Materiales/Loading";
 import { ListaDeMateriales } from "../components/Materiales/ListaDeMateriales";
 import Footer from '../components/footer'
-
+import Home from '../pages/Home'
 
 
 function Rutas() {
@@ -18,7 +18,7 @@ function Rutas() {
         <BrowserRouter>
             <Navbar />
             <Routes>
-                <Route path="/" element={<h1 className="m-4">Pagina inicial</h1>} />
+                <Route path="/" element={<Home/>} />
                 <Route path="/userList" element={<Omc23Cruds />} />
                 <Route path="/tablaReact" element={<PageOmc23 />} />
                 <Route path="/omniclass" element={loading ? <Loading /> : <TableContainer />} />

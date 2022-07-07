@@ -7,6 +7,7 @@ import store from './redux'
 import './styles/omc23/styles.css'
 import './styles/modalsStyle.css'
 import './styles/buttons.css'
+import './styles/styles.css'
 import { Rutas } from "./Routes/Rutas";
 import { TableProvider } from "./context/Materiales/TableContext";
 import { Container } from "./components/Materiales/Container";

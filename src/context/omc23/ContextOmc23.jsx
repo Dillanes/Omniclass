@@ -1,15 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useMemo } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import {
-  fetchAllUsers,
-  fetchAllOMCN2,
-  fetchAllOMCN3,
-  fetchAllOMCN4,
-  fetchAllOMCN5,
-  fetchAllOMCN6,
-} from "../../redux/slices/users";
 // import { fetchAllUsers,fetchAllOMCN2,fetchAllOMCN3,fetchAllOMCN4,fetchAllOMCN5,fetchAllOMCN6} from '../../redux/slices'
 const Omc23Context = React.createContext();
 
@@ -18,7 +9,7 @@ export function Omc23Provider(props) {
     fetchData();
   }, []);
 
-  const dispatch = useDispatch();
+
 
   //Listado de Tablas
   const [dataomcn2, setdataomcn2] = useState([]);
@@ -42,32 +33,31 @@ export function Omc23Provider(props) {
   const [omc23n6, setomc23n6] = useState([]);
   const [response, setresponse] = useState([]);
 
+
+  console.log(omc23n2)
+
   //Funciones para filtrar
   //FUNCIONES PARA FILTRAR
-  const selectOpp = (data) => {
+  const selectOpp =(data) => {
+    console.log(data)
     setselectcodigo1(data);
     const selectid = omc23n1.filter((dato) => dato.Codigo === data);
-    console.table(
-      omc23n2.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1)
-    );
+    console.log(omc23n2.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1))
     setdataomcn2(
       omc23n2.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1)
     );
+    console.log('hola desde el selectOpp2')
+    
     setdataomcn3([]);
     setdataomcn4([]);
     setdataomcn5([]);
-    console.log("ptm ya ");
   };
 
-  const selectOpp2 = async (data) => {
-    await fetchData();
+  const selectOpp2 = (data) => {
+
     setselectcodigo2(data);
     const selectid = omc23n2.filter((dato) => dato.Codigo === data);
-    console.log(omc23n2.filter((dato) => dato.Codigo === data));
     setdataomcn3(
-      omc23n3.filter((dato) => dato.fk_Omc23N2 === selectid[0].idOmc23N2)
-    );
-    await console.log(
       omc23n3.filter((dato) => dato.fk_Omc23N2 === selectid[0].idOmc23N2)
     );
     setdataomcn4([]);
@@ -114,8 +104,12 @@ export function Omc23Provider(props) {
       .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel2/")
       .then((response) => {
         setomc23n2(response.data.results);
-        console.log("Me actualice guapo");
-      });
+        console.log(response.data.results)
+        setTimeout(() => {
+          selectOpp(selectcodigo1)
+        }, 5000);
+        
+      })
 
     axios
       .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel3/")
@@ -311,7 +305,6 @@ export function Omc23Provider(props) {
             if (response.request.status === 200) {
               return toast.success("El registro se ha actualizado");
             }
-            selectOpp();
             setresponse(response.request.status);
           });
         break;
@@ -331,19 +324,12 @@ export function Omc23Provider(props) {
           })
           .then((response) => {
             fetchData();
-            console.log(selectcodigo1);
+            console.log('hola desde el update 2')
             if (response.request.status === 200) {
               return toast.success("El registro se ha actualizado");
             }
-
             setresponse(response.request.status);
-          });
-        setTimeout(() => {
-          console.log("hola alv");
-          setdataomcn2([]);
-          selectOpp(selectcodigo1);
-        }, 1000);
-
+          })
         break;
       case 3:
         axios

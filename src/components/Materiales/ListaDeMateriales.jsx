@@ -85,7 +85,7 @@ function ListaDeMateriales() {
   //   "tipoSistema",
   // ];
 
-  console.log(datoBaseTabla);
+  // console.log(datoBaseTabla);
 
   return (
     <div className="container vh-100">
