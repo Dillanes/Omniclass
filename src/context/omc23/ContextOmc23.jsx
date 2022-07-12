@@ -1,15 +1,23 @@
+import { render, renderHook } from "@testing-library/react";
 import axios from "axios";
 import React, { useEffect, useState, useMemo } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { useLogin } from "../LoginContext";
 // import { fetchAllUsers,fetchAllOMCN2,fetchAllOMCN3,fetchAllOMCN4,fetchAllOMCN5,fetchAllOMCN6} from '../../redux/slices'
 const Omc23Context = React.createContext();
 
 export function Omc23Provider(props) {
+  
+  const {dataToken} = useLogin()
+
   useEffect(() => {
-    fetchData();
+    fetchData(1);
   }, []);
 
 
+  const headers = { headers:{
+    'Authorization': `Token ${dataToken.token}`
+  }}
 
   //Listado de Tablas
   const [dataomcn2, setdataomcn2] = useState([]);
@@ -17,6 +25,7 @@ export function Omc23Provider(props) {
   const [dataomcn4, setdataomcn4] = useState([]);
   const [dataomcn5, setdataomcn5] = useState([]);
   const [dataomcn6, setdataomcn6] = useState([]);
+
 
   const [selectcodigo1, setselectcodigo1] = useState();
   const [selectcodigo2, setselectcodigo2] = useState();
@@ -33,106 +42,144 @@ export function Omc23Provider(props) {
   const [omc23n6, setomc23n6] = useState([]);
   const [response, setresponse] = useState([]);
 
-
-  console.log(omc23n2)
-
   //Funciones para filtrar
   //FUNCIONES PARA FILTRAR
-  const selectOpp =(data) => {
-    console.log(data)
+  const selectOpp =(data, dataApi) => {
     setselectcodigo1(data);
     const selectid = omc23n1.filter((dato) => dato.Codigo === data);
-    console.log(omc23n2.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1))
-    setdataomcn2(
-      omc23n2.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1)
-    );
-    console.log('hola desde el selectOpp2')
-    
+    if(dataApi!=null){setdataomcn2(dataApi.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1))}else{
+      setdataomcn2(omc23n2.filter((dato) => dato.fk_Omc23N1 === selectid[0].idOmc23N1))
+    }
     setdataomcn3([]);
     setdataomcn4([]);
     setdataomcn5([]);
   };
 
-  const selectOpp2 = (data) => {
+  const selectOpp2 = (data,dataApi) => {
 
     setselectcodigo2(data);
     const selectid = omc23n2.filter((dato) => dato.Codigo === data);
-    setdataomcn3(
-      omc23n3.filter((dato) => dato.fk_Omc23N2 === selectid[0].idOmc23N2)
-    );
+    if(dataApi!=null){
+      setdataomcn3(
+        dataApi.filter((dato) => dato.fk_Omc23N2 === selectid[0].idOmc23N2));
+    }else{
+      setdataomcn3(
+        omc23n3.filter((dato) => dato.fk_Omc23N2 === selectid[0].idOmc23N2)
+      )
+    }
+
     setdataomcn4([]);
     setdataomcn5([]);
     setdataomcn6([]);
   };
 
-  const selectOpp3 = (data) => {
+  const selectOpp3 = (data,dataApi) => {
     setselectcodigo3(data);
     const selectid = omc23n3.filter((dato) => dato.Codigo === data);
-    setdataomcn4(
-      omc23n4.filter((dato) => dato.fk_Omc23N3 === selectid[0].idOmc23N3)
-    );
+    if(dataApi!=null){
+      setdataomcn4(
+        dataApi.filter((dato) => dato.fk_Omc23N3 === selectid[0].idOmc23N3)
+      )
+    }else{
+      setdataomcn4(
+        omc23n4.filter((dato) => dato.fk_Omc23N3 === selectid[0].idOmc23N3)
+      )
+    }
     setdataomcn5([]);
     setdataomcn6([]);
   };
 
-  const selectOpp4 = (data) => {
+  const selectOpp4 = (data,dataApi) => {
     setselectcodigo4(data);
     const selectid = omc23n4.filter((dato) => dato.Codigo === data);
-    setdataomcn5(
-      omc23n5.filter((dato) => dato.fk_Omc23N4 === selectid[0].idOmc23N4)
-    );
+    if(dataApi!=null){
+      setdataomcn5(
+        dataApi.filter((dato) => dato.fk_Omc23N4 === selectid[0].idOmc23N4)
+      )
+    }else{
+      setdataomcn5(
+        omc23n5.filter((dato) => dato.fk_Omc23N4 === selectid[0].idOmc23N4)
+      )
+    }
     setdataomcn6([]);
   };
 
-  const selectOpp5 = (data) => {
+  const selectOpp5 = (data,dataApi) => {
     setselectcodigo5(data);
     const selectid = omc23n5.filter((dato) => dato.Codigo === data);
-    setdataomcn6(
-      omc23n6.filter((dato) => dato.fk_Omc23N5 === selectid[0].idOmc23N5)
-    );
+    if(dataApi!=null){
+      setdataomcn6(
+        dataApi.filter((dato) => dato.fk_Omc23N5 === selectid[0].idOmc23N5)
+      )
+    }else{
+      setdataomcn6(
+        omc23n6.filter((dato) => dato.fk_Omc23N5 === selectid[0].idOmc23N5)
+      )
+    }
   };
 
   //LLAMADO A LAS APIS
-  const fetchData = async () => {
+  const fetchData = async (num) => {
     axios
-      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel1/")
+      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel1/",headers)
       .then((response) => {
         setomc23n1(response.data.results);
+      }).catch((error)=>{
+        console.error(error)
       });
 
     axios
-      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel2/")
+      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel2/",headers)
       .then((response) => {
         setomc23n2(response.data.results);
-        console.log(response.data.results)
-        setTimeout(() => {
-          selectOpp(selectcodigo1)
-        }, 5000);
+        if(num===2){selectOpp(selectcodigo1,response.data.results)}
         
-      })
-
-    axios
-      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel3/")
-      .then((response) => {
-        setomc23n3(response.data.results);
+      }).catch((error)=>{
+        console.log(error)
       });
 
     axios
-      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel4/")
+      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel3/",headers)
       .then((response) => {
-        setomc23n4(response.data.results);
+        setomc23n3(response.data.results);  
+        if(num===3){selectOpp2(selectcodigo2,response.data.results)
+          
+        }
+      }).catch((error)=>{
+        console.log(error)
       });
 
     axios
-      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel5/")
+      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel4/",headers)
+      .then((response) => {
+        setomc23n4(response.data.results); 
+        if(num===4){selectOpp3(selectcodigo3,response.data.results)
+          
+        }
+      }).catch((error)=>{
+        console.log(error)
+      });
+
+    axios
+      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel5/",headers)
       .then((response) => {
         setomc23n5(response.data.results);
+        if(num===5){selectOpp4(selectcodigo4,response.data.results)
+          
+        }
+      }).catch((error)=>{
+        console.log(error)
       });
 
     axios
-      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel6/")
+      .get("http://127.0.0.1:8000/apiOMC23/ListarOMC23Nivel6/",headers)
       .then((response) => {
-        setomc23n6(response.data.results);
+        setomc23n6(response.data.results);  
+        if(num===6){selectOpp5(selectcodigo5,response.data.results)
+        
+        }
+      }).catch((error)=>{
+        console.log(error)
       });
   };
 
@@ -150,7 +197,7 @@ export function Omc23Provider(props) {
             descriSpa: Data.descriSpa,
             ejemploEng: Data.ejemploEng,
             ejemploSpa: Data.ejemploSpa,
-          })
+          },headers)
           .then((response) => {
             console.log(response);
             fetchData();
@@ -161,6 +208,8 @@ export function Omc23Provider(props) {
               );
             }
             setresponse(response.request.status);
+          }).catch((error)=>{
+            console.log(error)
           });
         break;
       case 2:
@@ -177,13 +226,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N1: register1[0].idOmc23N1,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            fetchData(2);
             if (response.request.status === 201) {
               return toast.success("EL registro se ha creado exitosamente");
             }
             setresponse(response.request.status);
+          }).catch((error)=>{
+            console.log(error)
           });
 
         break;
@@ -201,13 +252,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N2: register2[0].idOmc23N2,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            fetchData(3);
             if (response.request.status === 201) {
               return toast.success("EL registro se ha creado exitosamente");
             }
             setresponse(response.request.status);
+          }).catch((error)=>{
+            console.log(error)
           });
         break;
       case 4:
@@ -224,13 +277,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N3: register3[0].idOmc23N3,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            fetchData(4);
             if (response.request.status === 201) {
               return toast.success("EL registro se ha creado exitosamente");
             }
             setresponse(response.request.status);
+          }).catch((error)=>{
+            console.log(error)
           });
         break;
       case 5:
@@ -247,13 +302,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N4: register4[0].idOmc23N4,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            fetchData(5);
             if (response.request.status === 201) {
               return toast.success("EL registro se ha creado exitosamente");
             }
             setresponse(response.request.status);
+          }).catch((error)=>{
+            console.log(error)
           });
         break;
       case 6:
@@ -270,13 +327,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N5: register5[0].idOmc23N5,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            fetchData(6);
             if (response.request.status === 201) {
               return toast.success("EL registro se ha creado exitosamente");
             }
             setresponse(response.request.status);
+          }).catch((error)=>{
+            console.log(error)
           });
         break;
       default:
@@ -298,10 +357,10 @@ export function Omc23Provider(props) {
             descriSpa: Data.descriSpa,
             ejemploEng: Data.ejemploEng,
             ejemploSpa: Data.ejemploSpa,
-          })
+          },headers)
           .then((response) => {
             console.log(response);
-            fetchData();
+            fetchData(1);
             if (response.request.status === 200) {
               return toast.success("El registro se ha actualizado");
             }
@@ -321,13 +380,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N1: fk,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
-            console.log('hola desde el update 2')
+            
             if (response.request.status === 200) {
-              return toast.success("El registro se ha actualizado");
-            }
+              return (
+                toast.success("El registro se ha actualizado"),
+                fetchData(2)
+              );              
+            }            
             setresponse(response.request.status);
           })
         break;
@@ -344,19 +405,15 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N2: fk,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            
             if (response.request.status === 200) {
-              return toast.success("El registro se ha actualizado");
+              return toast.success("El registro se ha actualizado"),
+              fetchData(3)
             }
             setresponse(response.request.status);
           });
-        setdataomcn3([]);
-        setTimeout(() => {
-          selectOpp2(selectcodigo2);
-          console.log("listo");
-        }, 1000);
         break;
       case 4:
         axios
@@ -371,13 +428,13 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N3: fk,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            
             if (response.request.status === 200) {
-              return toast.success("El registro se ha actualizado");
+              return toast.success("El registro se ha actualizado"),
+              fetchData(4)
             }
-            selectOpp2(selectcodigo3);
             setresponse(response.request.status);
           });
         break;
@@ -394,13 +451,14 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N4: fk,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            
             if (response.request.status === 200) {
-              return toast.success("El registro se ha actualizado");
+              return toast.success("El registro se ha actualizado"),
+              fetchData(5)
             }
-            selectOpp2(selectcodigo4);
+  
             setresponse(response.request.status);
           });
 
@@ -418,13 +476,13 @@ export function Omc23Provider(props) {
             ejemploSpa: Data.ejemploSpa,
             regFinal: Data.regFinal,
             fk_Omc23N5: fk,
-          })
+          },headers)
           .then((response) => {
-            fetchData();
+            
             if (response.request.status === 200) {
-              return toast.success("El registro se ha actualizado");
+              return toast.success("El registro se ha actualizado"),
+              fetchData(6)
             }
-            selectOpp2(selectcodigo5);
             setresponse(response.request.status);
           });
         break;

@@ -107,12 +107,14 @@ export default function PageOmc23() {
   
    const updateRegistro = (data)=>{
     setcurrent(data)
+    
     switch(numeroTabla){
       case 1:{
         const idRegistro = omc23n1.filter(reg=>reg.Codigo==data.Codigo)
         UpdateOmc23Url(numeroTabla,idRegistro[0].idOmc23N1,data)
       }break;
       case 2:{
+        console.log('es el updateRegistro', data)
         const idRegistro = omc23n2.filter(reg=>reg.Codigo==data.Codigo)
         UpdateOmc23Url(numeroTabla,idRegistro[0].idOmc23N2,data,idRegistro[0].fk_Omc23N1)
       }break;

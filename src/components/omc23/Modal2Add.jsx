@@ -186,31 +186,31 @@ if (!props.active) return null
      </div>
      <div className="row mt-2">
      <div className="form-group col">
-       <input className="form-control" id="exampleFormControlTextarea1" maxLength='100' placeholder='Descripción en Inglés' {...register("descriEng",{required:true, maxLength:100})} rows="3"/>
+       <input className="form-control" id="exampleFormControlTextarea1" maxLength='100' placeholder='Descripción en Inglés' {...register("descriEng",{ maxLength:100})} rows="3"/>
        {errors.descriEng && <span className="text-danger text-small d-block mb-2">No valido</span>}
      </div>
      <div className="form-group col">
-       <input className="form-control" id="exampleFormControlTextarea1" maxLength='100' placeholder='Descripción en Español' rows="3" {...register("descriSpa",{required:true,maxLength:100})}/>
+       <input className="form-control" id="exampleFormControlTextarea1" maxLength='100' placeholder='Descripción en Español' rows="3" {...register("descriSpa",{maxLength:100})}/>
        {errors.descriSpa && <span className="text-danger text-small d-block mb-2">No valido</span>}
      </div>
      </div>
      <div className="row mt-2 InputAdd">
      <div className="form-group col">
-       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='300' placeholder='Definición en Inglés' {...register("definicionEng",{required:true,maxLength:300})} rows="3"></textarea>
+       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='300' placeholder='Definición en Inglés' {...register("definicionEng",{maxLength:300})} rows="3"></textarea>
        {errors.definicionEng && <span className="text-danger text-small d-block mb-2">No valido</span>}
      </div>
      <div className="form-group col">
-       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='470' placeholder='Definición en Español' {...register("definicionSpa",{required:true,maxLength:470})} rows="3"></textarea>
+       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='470' placeholder='Definición en Español' {...register("definicionSpa",{maxLength:470})} rows="3"></textarea>
        {errors.definicionSpa && <span className="text-danger text-small d-block mb-2">No valido</span>}
      </div>
      </div>
      <div className="row mt-2 InputAdd">
      <div className="form-group col">
-       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='300' placeholder='Ejemplo en Inglés ' {...register("ejemploEng",{required:true,maxLength:300})} rows="3"></textarea>
+       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='300' placeholder='Ejemplo en Inglés ' {...register("ejemploEng",{maxLength:300})} rows="3"></textarea>
        {errors.ejemploEng && <span className="text-danger text-small d-block mb-2">No valido</span>}
      </div>
      <div className="form-group col">
-       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='400' placeholder='Ejemplo en Español' {...register("ejemploSpa",{required:true,maxLength:400})} rows="3"></textarea>
+       <textarea className="form-control" id="exampleFormControlTextarea1" maxLength='400' placeholder='Ejemplo en Español' {...register("ejemploSpa",{maxLength:400})} rows="3"></textarea>
        {errors.ejemploSpa && <span className="text-danger text-small d-block mb-2">No valido</span>}
      </div>
      </div>

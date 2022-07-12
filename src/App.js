@@ -1,5 +1,5 @@
-import React from "react";
-
+import React,{useState} from "react";
+import Login from "./pages/Login";
 //redux
 import { Omc23Provider } from "./context/omc23/ContextOmc23";
 import { Provider } from "react-redux";
@@ -11,21 +11,39 @@ import './styles/styles.css'
 import { Rutas } from "./Routes/Rutas";
 import { TableProvider } from "./context/Materiales/TableContext";
 import { Container } from "./components/Materiales/Container";
-
-
+import { LoginProvider } from "./context/LoginContext";
+import { useLogin } from "./context/LoginContext";
+import { Omc34Provider } from "./context/omc34/contextOmc34";
 function App() {
-  return (
-    <div className="" >
-      <Provider store={store}>
-        <Omc23Provider>
-          <TableProvider>
-            <Rutas />
+  
+  const {dataToken,authentication}= useLogin()
 
-          </TableProvider>
-        </Omc23Provider>
-      </Provider>
-    </div>
-  );
-}
+
+  if(authentication===false){
+      return(
+
+          <Login/>
+        
+      )
+  }
+
+  if(authentication===true){
+    return (
+      <div className="" >
+        
+        <Provider store={store}>
+          <Omc23Provider>
+            <TableProvider>
+              <Omc34Provider>
+              <Rutas />
+              </Omc34Provider>
+            </TableProvider>
+          </Omc23Provider>
+        </Provider>
+      </div>
+    )
+  }
+
+  }
 
 export default App;

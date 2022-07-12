@@ -9,6 +9,7 @@ import { Loading } from "../components/Materiales/Loading";
 import { ListaDeMateriales } from "../components/Materiales/ListaDeMateriales";
 import Footer from '../components/footer'
 import Home from '../pages/Home'
+import RolesOrg from '../pages/RolesOrg'
 
 
 function Rutas() {
@@ -23,6 +24,7 @@ function Rutas() {
                 <Route path="/tablaReact" element={<PageOmc23 />} />
                 <Route path="/omniclass" element={loading ? <Loading /> : <TableContainer />} />
                 <Route path="/listaDeMateriales" element={<ListaDeMateriales />} />
+                <Route path='/rolesOrganizacionales' element={<RolesOrg/>}/>
             </Routes>
         </BrowserRouter>
     )

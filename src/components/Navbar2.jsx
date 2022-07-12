@@ -9,9 +9,13 @@ import { BsTools } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import { AiFillDownCircle } from "react-icons/ai";
 import { SiSuperuser } from "react-icons/si";
+import { useLogin } from "../context/LoginContext";
+
+
+
 export default function Navbar() {
   const [estadoUser, setestadoUser] = useState("bx bx-menu");
-
+ const {Logout} = useLogin()
   const menuEmpezar = (e) => {
     const toggle = document.getElementById("header-toggle"),
       nav = document.getElementById("nav-bar"),
@@ -114,7 +118,7 @@ export default function Navbar() {
                 <i className="bx bx-message-square-detail nav_icon"></i>
                 <span className="nav_name">ACTIVIDADES</span>
               </NavLink>
-              <NavLink to="/#" className="nav_link">
+              <NavLink to="/rolesOrganizacionales" className="nav_link">
                 <VscOrganization className="bx bx-folder nav_icon" />
                 <span className="nav_name">ROLES ORGANIZACIONALES</span>
               </NavLink>
@@ -181,10 +185,10 @@ export default function Navbar() {
                 </NavLink>
               </div>
             </div>
-            <NavLink to="/#" className="nav_link">
+            <div onClick={()=>Logout()} className="nav_link">
               <i className="bx bx-log-out nav_icon"></i>
               <span className="nav_name">Salir</span>
-            </NavLink>
+            </div>
           </div>
         </nav>
       </div>

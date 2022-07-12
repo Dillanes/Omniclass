@@ -1,25 +1,20 @@
-import { Button } from "bootstrap";
-import React, { useMemo, useState } from "react";
+import React,{useMemo} from 'react'
+import GlobalFilter from '../GlobalFilter'
 import {
-  useTable,
-  usePagination,
-  useGlobalFilter,
-  useSortBy,
-} from "react-table";
-import GlobalFilter from "../GlobalFilter";
-import { useOmc23 } from "../../context/omc23/ContextOmc23";
-import "../../styles/omc23/styles.css";
+    useTable,
+    usePagination,
+    useGlobalFilter,
+    useSortBy,
+    useExpanded
+  } from "react-table";
 
+function TablaOmc34(props) {
+    
 
-export default function Omcn1(props) {
-  const dataOmc1 = props.Omcn1;
-  const { NivelForm } = useOmc23();
-
-  //ESTILOS CSS PARA SELECCIONAR FILA
+      //ESTILOS CSS PARA SELECCIONAR FILA
   function cleanTr() {
     document.querySelectorAll(".row-selected").forEach(function (index) {
       index.classList.remove("row-selected");
-      index.classList.remove("other-clic");
     });
   }
 
@@ -32,11 +27,10 @@ export default function Omcn1(props) {
     }
   };
 
-  const data = useMemo(() => [...props.Omcn1], [props.Omcn1]);
+    const data = useMemo(()=>[...props.datamap],[props.datamap])
 
-  const columns = React.useMemo(
-    () => [
-      {
+   const columns = useMemo(()=>[
+    {
         Header: "No",
         accessor: "",
         Cell: (row) => {
@@ -46,54 +40,30 @@ export default function Omcn1(props) {
           textAlign: "center",
         },
       },
-
-      {
-        Header: "Código",
-        accessor: "Codigo",
-        className: "Codigo",
-        style: {
-          width: "100px",
+        {
+            Header:'Codigo',
+            accessor:'Codigo',
+            style:{
+                minWidth:'100px'
+            }
         },
-      },
-      {
-        Header: "Descripción en Inglés",
-        accessor: "descriEng",
-      },
-      {
-        Header: "Descripción en Español",
-        accessor: "descriSpa",
-      },
-      {
-        Header: "Definición en Inglés",
-        accessor: "definicionEng",
-      },
-      {
-        Header: "Definición en Español",
-        accessor: "definicionSpa",
-      },
-      {
-        Header: "Ejemplo en Inglés",
-        accessor: "ejemploEng",
-      },
-      {
-        Header: "Ejemplo en Español",
-        accessor: "ejemploSpa",
-      },
+        {
+            Header:'Descripción en Inglés',
+            accessor:'descriEng'
+        },{
+            Header:'Descripción en Español',
+            accessor:'descriSpa'
+        },{
+            Header:'Definición en Inglés',
+            accessor:'definicionEng'
+        },{
+            Header:'Definición en Español',
+            accessor:'definicionSpa'
+        }
+   ],[])
 
-      {
-        Header: "Año de Registro",
-        accessor: "anioReg",
-      },
-    ],
-    []
-  );
-
-  //  const dataColumns = useMemo(()=> props.Omcn1[0] ? Object.keys(props.Omcn1[0]).map((key)=>{
-  //   return {Header:key, accesor:key};
-  //  }):[null],[props.Omcn1]);
-  //   console.log(dataColumns)
-
-  const tableHooks = (hooks) => {
+   
+   const tableHooks = (hooks) => {
     hooks.visibleColumns.push((columns) => [
       ...columns,
       {
@@ -102,19 +72,20 @@ export default function Omcn1(props) {
         Cell: ({ row }) => (
           <button
             type="button"
-            className="btn btn-success"
+            className="btn btn-dark"
             style={{ marginTop: "20%" }}
-            onClick={() => props.edidrow(1, row.values)}
+            onClick={() => props.nextNivel(row.values,props.nivel)}
           >
             {" "}
-            Editar
+            Nivel{props.nivel+1}
           </button>
         ),
       },
     ]);
   };
 
-  const {
+
+   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
@@ -136,11 +107,12 @@ export default function Omcn1(props) {
 
   const { globalFilter } = state;
 
+
   return (
     <div className="containerTable">
       <div className="headerTable">
         <div className="col-md-7 col-sm-5">
-          <h2 className="mt-3 textTable">OMC Nivel 1</h2>
+          <h2 className="mt-3 textTable">OMC34 Nivel 1</h2>
         </div>
         <div className="col-md-5 col-sm-7">
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
@@ -180,9 +152,8 @@ export default function Omcn1(props) {
                 <tr
                   style={{ fontSize: "12px", fontFamily: "arial" }}
                   {...row.getRowProps()}
-                  onClick={(e) => (
-                    selectRow(e), props.selectOpp(row.original.Codigo,null)
-                  )}
+                  onClick={(e) => selectRow(e)
+                  }
                 >
                   {row.cells.map((cell, idx) => {
                     return (
@@ -227,5 +198,7 @@ export default function Omcn1(props) {
         </span>
       </div>
     </div>
-  );
+  )
 }
+
+export default TablaOmc34
