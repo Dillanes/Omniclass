@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import '../styles/login/styles.css'
 import { useLogin } from '../context/LoginContext';
 
+import Logo from '../assets/img/logoConsulting.png'
+
 const Login = () => {
     const {register,formState:{errors} ,handleSubmit,setValue} = useForm();
     
@@ -38,11 +40,18 @@ const Login = () => {
    //       </div>
    //      </div>
    //      </div>
-     <div>
+     <div className='containerLoginInicio'>
         <div className="sidenav">
          <div className="login-main-text">
-            <h2>Application<br/> Login Page</h2>
-            <p>Login or register from here to access.</p>
+            <div className='ContainerImgLogin'>
+            <img className='LogoCCGLogin' src={Logo}/>
+            </div>
+            <div className='textLoginDesc'>
+               <h3>IMPULSAMOS LA TRANSFORMACIÓN<br/> HACIA LA CONSTRUCCIÓN 4.0 </h3>
+               <p>Integración de Tecnologías para la Administración de
+               Proyectos de Arquitectura, Ingeniería y Construcción</p>
+            </div>
+            
          </div>
       </div>
       <div className="main">
@@ -50,16 +59,17 @@ const Login = () => {
             <div className="login-form">
                <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
                   <div className="form-group">
-                     <label>User Name</label>
-                     <input type="text" className="form-control" {...register("username",{required:true})} placeholder="User Name"/>
-                     {errors.username && <span className="text-danger text-small d-block mb-2">No valido</span>}
+                     <label>Nombre de Usuario:</label>
+                     <input type="text" className="form-control" {...register("username",{required:true})} placeholder="Usuario.."/>
+                     {errors.username && <span className="text-danger text-small d-block mb-2">Se requiere el nombre de usuario</span>}
                   </div>
                   <div className="form-group">
-                     <label>Password</label>
-                     <input type="password" className="form-control" {...register("password",{required:true})} placeholder="Password"/>
-                     {errors.password && <span className="text-danger text-small d-block mb-2">No valido</span>}
+                     <label>Contraseña:</label>
+                     <input type="password" className="form-control" {...register("password",{required:true})} placeholder="Contraseña.."/>
+                     {errors.password && <span className="text-danger text-small d-block mb-2">Se requiere la contraseña</span>}
                   </div>
-                  <button style={{color:'#fff',marginTop:'4px'}} type="submit" className="btn btn-black">Login</button>
+                  
+                  <button style={{color:'#fff',marginTop:'4px'}} type="submit" className="botonInicioLogin">Ingresar</button>
                </form>
             </div>
          </div>

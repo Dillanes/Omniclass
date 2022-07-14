@@ -41,13 +41,13 @@ export default function ModalEdid(props) {
         <div className='form' style={{marginTop:'40px'}}>
         <form onSubmit={handleSubmit(onSubmit)}>
        <div className="row InputAdd">
-        <div className="form-group mt-sm-2 col-md-6">
+        <div className="form-group mt-sm-2 col-md-2 col-lg-6 ">
          <label htmlFor="inputEmail4">Código</label>
          <input type="text" maxLength='15' className="form-control" id="inputEmail4" {...register("Codigo",{required:true,minLength:15})} placeholder="Código"/>
          {errors.Codigo && <span className="text-danger text-small d-block mb-2">No valido</span>}
          
        </div>
-       <div className="form-group mt-sm-2 col-md-4">
+       <div className="form-group mt-sm-2 col-md-2 col-lg-4">
          <label htmlFor="inputPassword4">Año de Registro</label>
          <input type="text" maxLength='4' className="form-control" id="inputPassword4" {...register("anioReg",{required:true,maxLength:4})} placeholder="Año de Registro"/>
          {errors.anioReg && <span className="text-danger text-small d-block mb-2">No valido</span>}

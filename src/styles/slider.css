@@ -4,10 +4,21 @@
 }
 
 .ContainerSliderHome{
+    /* position: relative;
+    padding-bottom: 40px; */
+    overflow: hidden;
+
+    height: fit-content;
+    height: 285px;
     position: relative;
-    padding-bottom: 40px;
+    bottom: 50px;
 }
 
+.carruselHomeCCG{
+
+  height: fit-content;
+
+}
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
@@ -34,7 +45,7 @@ figure.snip1477 *:after {
   transition: all 0.55s ease;
 }
 figure.snip1477 img {
-  max-width: 100%;
+  max-width: 120%;
   backface-visibility: hidden;
   vertical-align: top;
   opacity: 0.9;
@@ -43,7 +54,7 @@ figure.snip1477 .title {
   position: absolute;
   top: 58%;
   left: 25px;
-  padding: 5px 10px 10px;
+  padding: 10px 10px 10px;
 }
 figure.snip1477 .title:before,
 figure.snip1477 .title:after {

@@ -122,7 +122,53 @@
 
 }
 
+.ContainerImgLogin{
+    width: 100%;
+}
+.textLoginDesc{
+    color: #fff;
+    animation-name: showText;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
 
+}
+
+@keyframes showText {
+    0%{
+        color: #000;
+    }
+}
+
+.LogoCCGLogin{   
+    width: 80%;
+    margin:auto;
+    filter: invert(90%);
+    animation-name: visible;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes visible {
+    0%{
+        filter: invert(0%);
+    }
+    
+}
+
+.containerLoginInicio{
+    height: 100%;
+}
+.botonInicioLogin{
+    background-color: #000;
+    box-shadow: none;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.botonInicioLogin:hover{
+        background-color: #444;
+}
 
 
 

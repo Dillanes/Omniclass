@@ -5,7 +5,7 @@
     width: 60%;
     background-color: black;
 
-    bottom: 600px;
+    bottom: 60%;
     left: 22%;
     z-index: 10;
 
@@ -94,7 +94,7 @@ background: linear-gradient(90deg, rgba(98,98,98,1) 0%, rgba(191,191,191,1) 51%,
 
 .tituloHome{
     text-align: center;
-    margin-top: 500px;
+    margin-top: 25%;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     /* text-shadow: 2px 2px 6px grey; */
@@ -124,10 +124,10 @@ background: linear-gradient(90deg, rgba(98,98,98,1) 0%, rgba(191,191,191,1) 51%,
 .imgHome2{
     position: fixed;
     /* filter: invert(90%); */
-    height: 208px;
+    /* height: 208px; */
     top: 150px;
-    width: 800;
-    left: 38%;
+    width: 30%;
+    left: 35%;
     animation-name: up;
     animation-duration: 2s;
     z-index: 50;
@@ -138,18 +138,19 @@ background: linear-gradient(90deg, rgba(98,98,98,1) 0%, rgba(191,191,191,1) 51%,
 
 @keyframes down{
     0%{
-        transform: translateY(-400px);
-        font-size: 1px;
+        transform: translateY(-220%);
+        color: #fff;
+        font-size: 15;
     }
 
     50%{
-        font-size: 25px;
+        
     }
 }
 
 @keyframes up{
 0%{
-    transform: translateY(400px);
+    transform: translateY(80%);
     
 }
 }

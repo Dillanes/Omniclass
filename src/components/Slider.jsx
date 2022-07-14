@@ -25,7 +25,7 @@ function Slider() {
     <div>
            
       <div className="ContainerSliderHome">
-        <Carousel breakPoints={breakPoints}>
+        <Carousel className='carruselHomeCCG' breakPoints={breakPoints}>
           <Items><figure title='Administraión de obra' class="snip1477">
             <img className='imgSlider' src={Img1} alt="sample38" />
             <div class="title">
