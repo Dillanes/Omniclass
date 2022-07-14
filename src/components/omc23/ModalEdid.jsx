@@ -43,7 +43,7 @@ export default function ModalEdid(props) {
        <div className="row InputAdd">
         <div className="form-group mt-sm-2 col-md-6">
          <label htmlFor="inputEmail4">Código</label>
-         <input type="text" maxLength='9' className="form-control" id="inputEmail4" {...register("Codigo",{required:true,minLength:9})} placeholder="Código"/>
+         <input type="text" maxLength='15' className="form-control" id="inputEmail4" {...register("Codigo",{required:true,minLength:15})} placeholder="Código"/>
          {errors.Codigo && <span className="text-danger text-small d-block mb-2">No valido</span>}
          
        </div>

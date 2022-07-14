@@ -123,7 +123,7 @@ if (!props.active) return null
          
         <div className='overlay' >
         <div className='modalContainer'>
-            <button className='closeBtn'  onClick={()=>(props.setactive(false),props.setselect(null))}>X</button>
+            <button className='closeBtn'  onClick={()=>(props.setactive(false),props.setselect(null),reset())}>X</button>
             <div className='headerTittle'>Registrar concepto para la norma Omniclass 23: Productos Nivel {props.numeroTabla}</div>
             {
               props.numeroTabla>1?(
@@ -173,10 +173,8 @@ if (!props.active) return null
         <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
        <div className="row InputAdd">
         <div className="form-group col-md-6">
- 
-         <input type="text" maxLength='9' className="form-control" id="inputEmail4" {...register("Codigo",{required:true,minLength:9})} placeholder="Código"/>
+         <input type="text" maxLength='15' className="form-control" id="inputEmail4" {...register("Codigo",{required:true,minLength:15})} placeholder="Código"/>
          {errors.Codigo && <span className="text-danger text-small d-block mb-2">No valido</span>}
-         
        </div>
        <div className="form-group col-md-4">
       

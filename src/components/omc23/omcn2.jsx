@@ -103,7 +103,7 @@ export default function Omcn2(props){
         id:'Edit',
         Header:'Editar',
         Cell:({row})=>(
-          <button type='button' className='btn btn-success' data-bs-toggle="modal" style={{marginTop:'20%'}} data-bs-target='#modalEditar' onClick={()=>props.edidrow(2,row.values)}> Editar</button>
+          <button type='button' className='btn btn-success'  style={{marginTop:'20%'}}  onClick={()=>props.edidrow(2,row.values)}> Editar</button>
               
           
         )

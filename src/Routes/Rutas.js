@@ -10,6 +10,7 @@ import { ListaDeMateriales } from "../components/Materiales/ListaDeMateriales";
 import Footer from '../components/footer'
 import Home from '../pages/Home'
 import RolesOrg from '../pages/RolesOrg'
+import PageConsultaOrg from '../pages/PageConsultaOrg'
 
 
 function Rutas() {
@@ -25,6 +26,7 @@ function Rutas() {
                 <Route path="/omniclass" element={loading ? <Loading /> : <TableContainer />} />
                 <Route path="/listaDeMateriales" element={<ListaDeMateriales />} />
                 <Route path='/rolesOrganizacionales' element={<RolesOrg/>}/>
+                <Route path='/consultaRolesOrganizacionales' element={<PageConsultaOrg/>}/>
             </Routes>
         </BrowserRouter>
     )

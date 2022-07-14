@@ -97,7 +97,7 @@ background: linear-gradient(90deg, rgba(98,98,98,1) 0%, rgba(191,191,191,1) 51%,
     margin-top: 500px;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    text-shadow: 2px 2px 6px grey;
+    /* text-shadow: 2px 2px 6px grey; */
     animation-name: down;
     animation-duration: 2s;
     animation-iteration-count: 1;

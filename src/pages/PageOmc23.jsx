@@ -168,7 +168,7 @@ export default function PageOmc23() {
         {dataomcn3.length>0  ?(<Omcn3 dataomcn3={dataomcn3} selectOpp3={selectOpp3} edidrow={edidrow}/>):(null)}  
         {dataomcn4.length>0  ?(<Omcn4 dataomcn4={dataomcn4} selectOpp4={selectOpp4} edidrow={edidrow}/>):(null)}
         {dataomcn5.length>0  ?(<Omcn5 dataomcn5={dataomcn5} selectOpp5={selectOpp5} edidrow={edidrow}/>):(null)}
-        {dataomcn6.length>0 ?(<Omcn6 dataomcn6={dataomcn6}/>):(null)}
+        {dataomcn6.length>0 ?(<Omcn6 dataomcn6={dataomcn6} edidrow={edidrow}  />):(null)}
         <ModalEdid current={current} setactive={setactiveedit} active={activeedit}   numeroTabla={numeroTabla} updateRegistro={updateRegistro}/>
         
         </div>

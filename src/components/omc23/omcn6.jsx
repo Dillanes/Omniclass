@@ -98,7 +98,7 @@ const data = useMemo(()=>props.dataomcn6,[props.dataomcn6])
         id:'Edit',
         Header:'Editar',
         Cell:({row})=>(
-          <button type='button' className='btn btn-success' style={{marginTop:'20%'}} data-bs-toggle="modal" data-bs-target='#modalEditar' onClick={()=>props.edidrow(6,row.values)}> Editar</button>
+          <button type='button' className='btn btn-success' style={{marginTop:'20%'}}  onClick={()=>props.edidrow(6,row.values)}> Editar</button>
               
           
         )
@@ -128,9 +128,10 @@ const data = useMemo(()=>props.dataomcn6,[props.dataomcn6])
      return(
       <div className='containerTable mt-4'>
         <div className='headerTable' >
-          <div className='col-md-7 col-sm-5' ><h2 className='mt-3 textTable'>OMC Nivel 1</h2></div>
+          <div className='col-md-7 col-sm-5' ><h2 className='mt-3 textTable'>OMC Nivel 6</h2></div>
           <div className='col-md-5 col-sm-7'><GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/></div>
           </div>
+        <div className='table-responsive shadow-lg'>
         <table {...getTableProps()} className='table  table-hover mt-1'>
        <thead>
          {headerGroups.map(headerGroup => (
@@ -150,7 +151,7 @@ const data = useMemo(()=>props.dataomcn6,[props.dataomcn6])
          {page.map(row => {
            prepareRow(row)
            return (
-             <tr className='.trN6' {...row.getRowProps()} onClick={(e)=>selectRow(e)}>
+             <tr className='trN6' style={{fontSize:'12px', fontFamily:'arial'}} {...row.getRowProps()} onClick={(e)=>selectRow(e)}>
                {row.cells.map(cell => {
                  return (
                    <td
@@ -168,6 +169,7 @@ const data = useMemo(()=>props.dataomcn6,[props.dataomcn6])
          })}
        </tbody>
      </table>
+     </div>
      <div>
       </div>
       <div className='footerTable'>

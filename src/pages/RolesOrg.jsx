@@ -1,65 +1,69 @@
 import React, { Fragment } from 'react'
-import GlobalFilter from '../components/GlobalFilter'
-import { useOmc34 } from '../context/omc34/contextOmc34'
-import TablaOmc34 from '../components/omc34RolesO/TablaOmc34'
+import { useOmcCon34 } from '../context/omc34/contextOmcCon34'
+import { Toaster, toast } from "react-hot-toast";
+import TablaOmc34N from '../components/omc34RolesO/TablaOmc34N'
+import FormOmc34 from '../components/omc34RolesO/FormOmc34'
+import Footer from '../components/footer'
+import { Link, NavLink } from "react-router-dom";
+import {BsArrowBarRight} from 'react-icons/bs'
+import '../styles/omc34/styles.css'
+
 function RolesOrg() {
   const {nextNivel,
           descripcion,
           datamap,
           previusLevel,
-          numLevel} = useOmc34()
-  console.log(datamap)
-  return (
+          numLevel,
+          dataForm,
+          registrarRolOrg,
+          setdataForm,
+          formhiden,
+          setformhiden,
+          RegistrarRolOrg} = useOmcCon34()
 
-      <div className='container' style={{marginTop:'100px'}}>
-          <TablaOmc34 datamap={datamap} nextNivel={nextNivel}  nivel={numLevel}/>                 
+
+
+  return (
+<Fragment>
+      <Toaster
+          position='bottom-right'
+          toastOptions={{
+            duration:3000,
+            style:{
+              background:'#222',
+              color:'white'
+            }
+          }}
+        />
+      <div className='container containerOmc34RolOrg' style={{marginTop:'100px'}}>
+          {/* <TablaOmc34 datamap={datamap} nextNivel={nextNivel}  nivel={numLevel}/>    */}
+          <NavLink className='btnConsultarRolOrg' to='/consultaRolesOrganizacionales'>Consultar Roles <BsArrowBarRight/></NavLink>
+          <div className='containerTitle'>
+          <p className='textTitle'>Complementar Norma Omniclass 34: <p style={{fontZise:''}}>Formulario de Registro de Nuevos Roles Organizacionales</p></p>
+          <hr className='hrTitle'/>
+        </div>
+          <TablaOmc34N datamap={datamap} nextNivel={nextNivel} registrarRolOrg={registrarRolOrg}  nivel={numLevel}  />              
           {
             descripcion.length>0?(
-              <div style={{height:'100px'}}>
+              <div className='ContainertabsOmc34RolOrg' style={{height:'100px'}}>
                   {descripcion.map((desc,index)=>(
-                      <button onClick={()=>previusLevel(desc.nivel)} title={desc.descripcion} key={index} className='btn btn-info'>{desc.nivel}</button>
+                      <div onClick={()=>(previusLevel(desc.nivel),setformhiden(false))} title={desc.descripcion} key={index} className='tabsOmc34RolOrg'>{desc.nivel}</div>
                     ))}
               </div> 
             ):(null)
-          }
-          
-          <div className='containerOmc34Form'>
-            <div className='headerOmc34Form'></div>
-            <form className='formOmc34 row'  >
-              <div className="mb-3 col-1">
-                <label for="exampleInputEmail1" className="form-label">Id</label>
-                <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-              </div>
-              <div className="mb-3 col-2">
-                <label for="exampleInputEmail1" className="form-label">Codigo Omniclass</label>
-                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-              </div>
-              <div className="mb-3 col-1">
-              <label for="exampleInputEmail1" className="form-label">Consecutivo</label>
-                <input type="text" title='Numero consecutivo' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-              </div>
-              <div className="mb-3 col-4">
-                <label for="exampleInputEmail1" className="form-label">Descripción en Inglés</label>
-                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-              </div>
-              <div className="mb-3 col-4">
-                <label for="exampleInputEmail1" className="form-label">Descripción en Español</label>
-                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-              </div>
-              <div class="form-floating col-4">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                <label for="floatingTextarea">Definición en Inglés</label>
-              </div>
-              <div class="form-floating col-4">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                <label for="floatingTextarea">Definición en Español</label>
-              </div>
-            </form>
-            <div className='footerOmc34Form'>
+          } 
+      
 
-            </div>
-          </div>
+         {
+          formhiden?(<FormOmc34 RegistrarRolOrg={RegistrarRolOrg} dataForm={dataForm} setformhiden={setformhiden} setdataForm={setdataForm} />):(null)
+         }
+
+          
+
+          
       </div>
+      <Footer/>
+      </Fragment>
   )
 }
 

@@ -18,7 +18,7 @@
         border-radius: 0px 10px 0px 0px;
         z-index: 20;
         transition: all 0.5s;
-        font-weight: 700;
+        font-weight: 500;
 }
 .closeBtn:hover{
     background-color: rgb(236, 13, 13);

@@ -13,7 +13,7 @@ import { TableProvider } from "./context/Materiales/TableContext";
 import { Container } from "./components/Materiales/Container";
 import { LoginProvider } from "./context/LoginContext";
 import { useLogin } from "./context/LoginContext";
-import { Omc34Provider } from "./context/omc34/contextOmc34";
+import { Omc34ConProvider } from "./context/omc34/contextOmcCon34";
 function App() {
   
   const {dataToken,authentication}= useLogin()
@@ -34,9 +34,9 @@ function App() {
         <Provider store={store}>
           <Omc23Provider>
             <TableProvider>
-              <Omc34Provider>
+              <Omc34ConProvider>
               <Rutas />
-              </Omc34Provider>
+              </Omc34ConProvider>
             </TableProvider>
           </Omc23Provider>
         </Provider>
