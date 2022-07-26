@@ -4,7 +4,7 @@ import '../styles/footerStyle.css'
 const Footer = ()=> {
  
     return (
-        <footer className="text-center text-white mt-4" style={{backgroundColor:'rgba(20,20,20,0.8)'}}>
+        <footer className="text-center text-white mt-4" style={{backgroundColor:'rgba(20,20,20,0.8)', overflow:'hidden'}}>
         <div className="p-4">
     <section className="">
       <form action="">

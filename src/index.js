@@ -5,11 +5,14 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.css";
 import { Omc23Provider } from "./context/omc23/ContextOmc23";
 import { LoginProvider } from './context/LoginContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
  <LoginProvider>
     <App />
  </LoginProvider>
+
     
   
     

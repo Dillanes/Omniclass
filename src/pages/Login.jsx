@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import '../styles/login/styles.css'
 import { useLogin } from '../context/LoginContext';
+import { Toaster } from 'react-hot-toast';
 
 import Logo from '../assets/img/logoConsulting.png'
 
@@ -16,6 +17,7 @@ const Login = () => {
 
 
   return (
+   
    //  <div>
    //      <div className='containerLogin'>
    //      <div className='loginFormHeader'>Login de Inicio</div>
@@ -41,9 +43,22 @@ const Login = () => {
    //      </div>
    //      </div>
      <div className='containerLoginInicio'>
+      
+      <Toaster
+          position='top-center'
+          toastOptions={{
+            duration:3000,
+            style:{
+              background:'#222',
+              color:'white'
+            }
+          }}
+        />
         <div className="sidenav">
          <div className="login-main-text">
             <div className='ContainerImgLogin'>
+            <div className='brilloLogo'></div>
+            <div className='brilloLogo2'></div>
             <img className='LogoCCGLogin' src={Logo}/>
             </div>
             <div className='textLoginDesc'>

@@ -122,6 +122,8 @@
 .btnConsultarRolOrg{
     position: fixed;
     right: 20px;
+    z-index: 100;
+    background-color:#fff;
     text-decoration: none;
     color: #000;
     font-weight: 600;
@@ -131,7 +133,7 @@
 }
 
 .btnConsultarRolOrg:hover {
-    color: blue;
+    color: #555;
 }
 
 .containerOmc34ConsultaRolOrg{
